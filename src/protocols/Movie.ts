@@ -12,3 +12,8 @@ export type MovieEntity = {
 
 
 export type Movie = Omit< MovieEntity,"id"|"rate"|"comment">
+
+export type MovieComment = {
+    rate:number,
+    comment:string
+}

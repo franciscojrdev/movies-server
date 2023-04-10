@@ -9,7 +9,7 @@ async function insertUnique(newMovie: Movie): Promise<QueryResult<Movie>> {
   );
 }
 
-async function findMany() {
+async function findMany():Promise<QueryResult<MovieEntity>> {
   return connection.query(`SELECT * FROM movies`);
 }
 
@@ -17,8 +17,8 @@ async function findByName(movie_name: string):Promise<QueryResult<MovieEntity>> 
   return connection.query(`SELECT * FROM movies WHERE name LIKE '%${movie_name}%'`);
 }
 
-async function  updateByName({rate,comment,id}) {
-    return connection.query(`UPDATE movies SET rate=$1,comment=$2 WHERE id = $3`,[rate,comment,id])
+async function updateByName({rate,comment,id}) {
+    return connection.query(`UPDATE movies SET rate=$1,comment=$2,status=$3 WHERE id = $4`,[rate,comment,"watched",id])
 }
 
 async function findByGenre(genre: String) {

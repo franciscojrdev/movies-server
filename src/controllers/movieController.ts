@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { movieSchema, updateMovieSchema } from "../schemas/movieSchema.js";
 import movieRepositories from "../repositories/movieRepositories.js";
-import { Movie } from "../protocols/Movie.js";
+import { Movie, MovieComment } from "../protocols/Movie.js";
 
 async function create(req: Request, res: Response) {
   const newMovie = req.body as Movie;
@@ -32,7 +32,7 @@ async function listAll(req: Request, res: Response) {
 
 async function rateMovie(req: Request, res: Response) {
   const { movie_name } = req.params;
-  const { rate, comment } = req.body;
+  const { rate, comment } = req.body as MovieComment;
 
   const { error } = updateMovieSchema.validate({ rate, comment });
 
